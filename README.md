@@ -21,6 +21,8 @@ AD DS contains objects and attributes such as user and the user's first and last
 
 * Windows Server - To set up a fully functional Active Directory Domain Controller.
 
+### Installation of virtual machines
+
 
 
 
