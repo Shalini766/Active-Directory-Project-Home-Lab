@@ -21,7 +21,47 @@ AD DS contains objects and attributes such as user and the user's first and last
 
 * Windows Server - To set up a fully functional Active Directory Domain Controller.
 
-### Installation of virtual machines
+## Steps:
+### Step 1: Install VirtualBox
+* Download from https://www.virtualbox.org
+
+* Install on your host OS (Windows/Linux/macOS)
+
+Here we are using Windows OS as our host machine.
+
+### Step 2: Download the ISO images and tools.
+
+#### Windows 10 VM:
+* Install Windows 10 ISO (https://www.microsoft.com/en-ca/software-download/windows10)
+* Click on Create Windows 10 installation media and download the ISO image
+* Add the ISO image to the virtual machine (VM)
+* Enable the network adapter in NAT/Host-only mode for isolation
+
+#### Kali Linux VM:
+* Download ISO from https://www.kali.org
+* To unzip the Kali Linux file, download 7-Zip (https://7-zip.org).
+* Basic setup with networking enabled
+
+### Step 3: Installing Windows Server
+* Search Windows Server 2022 ISO
+* Go to the Microsoft website and click on Windows Server ISO (https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022)
+* Select the 64-bit edition in ISO downloads
+* Add the ISO image to the virtual machine (VM)
+* Name the VM as ADDC01
+* Click on Start and Select *Microsoft Windows Server Desktop Experience*
+* Install now
+
+### Step 4: Installing Splunk Server
+* Go to ubuntu.com, select Ubuntu Server
+* Download the Ubuntu Server 22.04.4LTS
+* Add the ISO image and name the VM *Splunk*
+* Install Splunk Server
+* Name your Splunk Server and set the Username and Password
+* Log in with your credentials and enter
+
+       *sudo apt-get update && sudo apt-get upgrade*   to update the repositories
+  
+
 
 
 
