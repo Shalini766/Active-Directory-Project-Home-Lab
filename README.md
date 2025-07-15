@@ -35,7 +35,7 @@ Here we are using Windows OS as our host machine.
 * Install Windows 10 ISO (https://www.microsoft.com/en-ca/software-download/windows10)
 * Click on Create Windows 10 installation media and download the ISO image
 * Add the ISO image to the virtual machine (VM)
-* Enable the network adapter in NAT/Host-only mode for isolation
+* Enable the network adapter in NAT network
 
 #### Kali Linux VM:
 * Download ISO from https://www.kali.org
@@ -60,7 +60,65 @@ Here we are using Windows OS as our host machine.
 * Log in with your credentials and enter
 
        *sudo apt-get update && sudo apt-get upgrade*   to update the repositories
-  
+
+### Step 5: Configuring the network
+
+***Creating a NAT Network***
+* Go to tools -> Network -> Nat Network
+* Name the network -> AD Project
+* IPv4Prefix-> 192.168.10.0/24
+
+Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Splunk Server to the NAT Network that has just been created, i.e, AD Project
+
+***Setting up the Static IP for Splunk Server***
+
+* Open the Splunk server and enter
+
+          sudo nano/etc/netplan/50-cloud-init.yaml
+* Edit the following points
+            PIC
+*Enter   *sudo netplan apply*
+* Check with *ip a*, this will reflect the new IP address 192.168.10.10/24
+
+### Step 6: Install Splunk on our HOST machine
+
+* Go to www.splunk.com -> Products-> Splunk Enterprise Linux version -> .deb file
+
+### Step 7: Adding guest add-on on Splunk Server (VM)
+
+* sudo apt-get install virtualbox-guest-additions-iso
+* Click y for yes, now the package should be installed
+* sudo apt-get install virtualbox-guest-utils
+
+* Now go to Devices-> Shared Folder-> Settings-> Add folder
+* Select the Path of the Splunk installer and select all three options below
+* enter ok
+* Now reboot the Splunk Server *sudo reboot*
+
+  ***Adding user to the vboxsf group***
+
+    * sudo adduser mytest vboxsf
+    * The user is added to the vboxsf group
+
+  ***Create a New Directory called share***
+
+  * mkdir share
+  * sudo mount -t vboxsf -o uid=1000,gid=1000 Active-Directory-Project share/
+  * ls -la
+  * cd share
+  * ls -la (gives all the files listed in that directory)
+  * to install Splunk  *sudo dpkg -i splunk-9.4.3-237ebbd22314-linux-amd64.deb*
+  * cd /opt/splunk
+  * Change the user to Splunk *sudo -u splunk bash*
+  * cd bin
+  * enter *./splunk start* to run the installer
+  * enter username and password to complete the installation
+  * enter *exit* to exit out of the user splunk
+  * cd bin
+  * sudo ./splunk enable boot-start -user splunk 
+
+
+
 
 
 
