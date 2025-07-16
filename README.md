@@ -119,13 +119,21 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
     
                 ./splunk start
   * enter username and password to complete the installation
-  *  to exit the Splunk user
+  * to exit the Splunk user
     
                 exit
 
-   To make sure every time Virtual Machine reboots, splunk runs with the user splunk enter the following command 
+   To make sure every time the Virtual Machine reboots, splunk runs with the user splunk, enter the following command 
   * cd bin
-  * sudo ./splunk enable boot-start -user splunk 
+  * sudo ./splunk enable boot-start -user splunk
+
+  Now the Splunk Server is running, next we have to install Splunk Universal Forwarder on both the Windows target machine and the Windows Server.
+
+
+  ### Step 8: Installing Splunk Universal Forwarder
+
+  #### On Windows Target Machine:
+  
 
 
 
