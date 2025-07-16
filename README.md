@@ -107,13 +107,23 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
   * ls -la
   * cd share
   * ls -la (gives all the files listed in that directory)
-  * to install Splunk  *sudo dpkg -i splunk-9.4.3-237ebbd22314-linux-amd64.deb*
+  * to install Splunk
+    
+                sudo dpkg -i splunk-9.4.3-237ebbd22314-linux-amd64.deb
   * cd /opt/splunk
-  * Change the user to Splunk *sudo -u splunk bash*
+  * Change the user to Splunk
+    
+                sudo -u splunk bash
   * cd bin
-  * enter *./splunk start* to run the installer
+  * to run the installer
+    
+                ./splunk start
   * enter username and password to complete the installation
-  * enter *exit* to exit out of the user splunk
+  *  to exit the Splunk user
+    
+                exit
+
+   To make sure every time Virtual Machine reboots, splunk runs with the user splunk enter the following command 
   * cd bin
   * sudo ./splunk enable boot-start -user splunk 
 
