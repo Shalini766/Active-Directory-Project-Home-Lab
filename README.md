@@ -133,7 +133,35 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
   ### Step 8: Installing Splunk Universal Forwarder
 
   #### On Windows Target Machine:
-  
+  * Rename your PC to target-PC and restart
+  * Set the static IP 192.168.10.100
+  * Default Gateway 192.168.10.1
+  * DNS Server 8.8.8.8
+  * Try accessing Splunk on a web browser 192.168.10.10:8000
+
+  #### On Windows Server:
+  *
+  * Set the static IP 192.168.10.7
+  * Default Gateway 192.168.10.1
+  * DNS Server 8.8.8.8
+
+    
+ #### On both Windows and Windows Server
+  * Go to www.splunk.com -> Free trials and downloads -> Universal Forwarder -> Windows 64-bit -> Download
+  * Execute the downloaded file
+  * Enter Username and password
+  * Receiving Indexer 192.168.10.10:9997
+  * Install
+
+### Step 9: Install Sysmon on Windows 10 VM and Windows Server
+- Once the test machine is running, open a web browser and go to https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
+- Download Sysmon from Microsoft Sysinternals and extract it to a folder.
+- Download the configuration file from https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml
+- Open the PowerShell, run as an administrator.
+- To be in the same folder, copy the folder path and paste it into PowerShell.
+- Install using the below command
+
+        .\Sysmon64.exe -i .\sysmonconfig.xml
 
 
 
