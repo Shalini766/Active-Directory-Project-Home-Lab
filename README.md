@@ -133,17 +133,18 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
   ### Step 8: Installing Splunk Universal Forwarder
 
   #### On Windows Target Machine:
-  * Rename your PC to target-PC and restart
+  * Rename your PC to **target-PC** and restart
   * Set the static IP 192.168.10.100
   * Default Gateway 192.168.10.1
   * DNS Server 8.8.8.8
-  * Try accessing Splunk on a web browser 192.168.10.10:8000
+  * Try accessing Splunk on a web browser at 192.168.10.10:8000
 
   #### On Windows Server:
   *
   * Set the static IP 192.168.10.7
   * Default Gateway 192.168.10.1
   * DNS Server 8.8.8.8
+  * Change the computer name to **ADDC01**
 
     
  #### On both Windows and Windows Server
@@ -161,7 +162,32 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
 - To be in the same folder, copy the folder path and paste it into PowerShell.
 - Install using the below command
 
-        .\Sysmon64.exe -i .\sysmonconfig.xml
+         cd C:\Users\sha\Downloads\Sysmon
+        .\Sysmon64.exe -i ..\sysmonconfig.xml
+
+   ### Configuring Splunk to ingest Sysmon Logs
+  - Go to the folder where Splunk is installed and check whether the inputs.conf file is available.
+  - Configure the inputs.conf file to ingest the Sysmon logs.
+  - Open Notepad as Administrator and paste the contents of inputs.conf
+    
+           C Drive->Program Files->User->Splunk Universal Forwarder->etc->System->local->inputs.conf
+    
+  - Make sure to restart the Splunk Universal Forwarder services.
+    
+          Services->Run as Administrator -> SplunkForwarder Service->Change log on to Local System->Restart
+
+### To Create an Index in Splunk
+
+- Open a web browser, enter 192.168.10.10:8000
+- login into Splunk -> Settings -> Indexes -> Create a new Index -> Name the Index -> endpoint
+-  Add Splunk Add-on for Sysmon to parse the data
+
+### Enabling Splunk Server to receive data
+
+- Go to Settings -> Forwarding and Receiving -> Configure Receiving -> New Receiving Port -> 9997 -> Save
+
+
+After setting up Splunk and Sysmon on both Windows and Windows Server, we should see two hosts on Splunk
 
 
 
