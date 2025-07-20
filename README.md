@@ -189,7 +189,48 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
 
 After setting up Splunk and Sysmon on both Windows and Windows Server, we should see two hosts on Splunk
 
+### Step 10: Installing and Configuring Active Directory (AD) on Windows Server 
 
+ ***Objective:*** To install and configure AD on Windows Server and promote it to the Domain Controller (DC) and configure the target Windows to join the newly created domain.
+
+ * Open Server Manager -> Manage -> Add Roles and Features -> Next
+ * Select Role-based or feature-based installation
+ * Select **ADDC01** -> Next
+ * Select Active Directory Domain Services -> Add Features -> Next -> Install
+
+ * Select Flag Icon -> Promote this server to a domain controller
+ * Add New Forest -> Root Domain Name -> mytest.local -> Install
+
+After installation, the server will automatically restart, and we can see our new domain **MYTEST\ADMINISTRATOR**
+
+***Creating some New Users on our Domain*** 
+
+* Log in to the newly created domain
+* Open Server Manager -> Tools -> Active Directory Users and Computers
+* Click on our domain, mytest.local
+
+To create a new unit in the mytest folder
+* Right-click -> New -> Organisational Unit -> name it IT
+* IT -> Right-click -> New -> User
+* Name the User -> Jenny Smith
+* Create Password -> Finish
+
+Now we have a new user named Jenny Smith; similarly, we can create any number of users for various organizational units.
+
+* IT -> Jenny Smith
+* HR -> Tan Smith
+
+   ***Joining our Windows to the domain and authenticating using Jenny Smith Account***
+  
+* Change the DNS to 192.168.10.7 which is DC
+* Windows -> This PC -> Properties -> Advanced Sysstem Settings
+* Computer Name -> Change -> Select Domain -> MYTEST.LOCAL
+* Enter username -> administrator
+* Create a password
+* Restart
+
+* Now login with the new user Jenny Smith
+  
 
 
 
