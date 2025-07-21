@@ -87,7 +87,7 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
 ### Step 7: Adding guest add-on on Splunk Server (VM)
 
 * sudo apt-get install virtualbox-guest-additions-iso
-* Click y for yes, now the package should be installed
+* Click y for yes. Now the package should be installed
 * sudo apt-get install virtualbox-guest-utils
 
 * Now go to Devices-> Shared Folder-> Settings-> Add folder
@@ -158,7 +158,7 @@ Now change settings for all the VMs Kali Linux, Windows, Windows Server, and Spl
 - Once the test machine is running, open a web browser and go to https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 - Download Sysmon from Microsoft Sysinternals and extract it to a folder.
 - Download the configuration file from https://github.com/olafhartong/sysmon-modular/blob/master/sysmonconfig.xml
-- Open the PowerShell, run as an administrator.
+- Open PowerShell, run as an administrator.
 - To be in the same folder, copy the folder path and paste it into PowerShell.
 - Install using the below command
 
@@ -229,8 +229,55 @@ Now we have a new user named Jenny Smith; similarly, we can create any number of
 * Create a password
 * Restart
 
-* Now login with the new user Jenny Smith
+ Now the new users Jenny Smith and Tan Smith can log in with their accounts.
+
+ ## Performing Bruteforce Attack using Kali onto our new users and viewing the telemetry on Splunk
+
+ **On Windows**
+ * Enable Remote Desktop Connection
+ * This PC -> Properties -> Advanced System Settings -> Remote tab -> Allow Remote connections -> Users -> Add Users (Jenny Smith & Tan Smith) -> Apply
+
+**On Kali**
+* Setup static IP address 192.168.10.250
+* Gateway 192.168.10.1
+* DNS Server 8.8.8.8
+
+Ping Google on 8.8.8.8 and Splunk on 192.168.10.10 to check connectivity.
+* sudo apt-get update && sudo apt-get upgrade -y
   
+ **To create our attack**
+ 
+ * Create directory ***ad-project***
+ * Use tool called Crowbar to perform attack, install
+
+         sudo apt-get install -y crowbar
+   
+ * cd /usr/share/wordlists/
+ * sudo gunzip rockyou.txt.gz
+ * cp rockyou.txt ~/Desktop/ad-project
+ * cd ~/Desktop/ad-project
+ * ls -lh (to see the file size)
+ * head -n 20 rockyou.txt (to display the first 20 lines)
+ * head -n 20 rockyou.txt > passwords.txt (output the file to passwords.txt)
+ * cat passwords.txt
+ * nano passwords.txt  ( to edit and enter your user password)
+
+* crowbar -h
+* crowbar -b rdp -u tsmith -C passwords.txt -s 192.168.10.100/32
+
+### Telemetry Generated in Splunk
+
+* Search and reporting
+  
+      index=endpoint tsmith
+
+* As we can see, there are multiple failed login attempts
+* index=endpoint tsmith EventCode=4624
+* This shows successful login
+
+The entire scenario indicates a successful brute-force attack, which confirms this as a true positive case. Attach all the evidence, document it, and escalate to senior team for further remediation and analysis, which includes containment of the system, changing credentials, securing the network, and using multi-factor authentication.
+
+
 
 
 
