@@ -276,12 +276,13 @@ Ping Google on 8.8.8.8 and Splunk on 192.168.10.10 to check connectivity.
 * This shows successful login
 
 The entire scenario indicates a successful brute-force attack, which confirms this as a true positive case. Attach all the evidence, document it, and escalate to senior team for further remediation and analysis, which includes 
-*containment of the system
-*changing credentials
-*use of strong passwords
-*securing the network
-*limiting login attempts 
-*IP address blocking, and using multi-factor authentication.
+
+* containment of the system
+* changing credentials
+* use of strong passwords
+* securing the network
+* limiting login attempts 
+* IP address blocking, and using multi-factor authentication.
 
 
 
