@@ -1,5 +1,5 @@
 # Active-Directory-Project-Home-Lab
-This project demonstrates setting up an Active Directory home lab on VirtualBox that includes Windows Server, Splunk, and Kali Linux. Here, we can create a fully functional Domain Controller on Windows Server and explore its environment and learn how to ingest events into Splunk SIEM, and generate telemetry using Sysmon related to attacks and help them detect in the future. 
+This project demonstrates setting up an Active Directory home lab on VirtualBox that includes Windows Server, Splunk, and Kali Linux. Here, we can create a fully functional Domain Controller on Windows Server and explore its environment and learn how to ingest events into Splunk SIEM, and generate telemetry using Sysmon related to attacks, and help them detect in the future. 
 
 ***Active Directory***(AD) is a database containing users, groups, computers, and many more. To use AD, the server should be installed with Active Directory Domain Services (AD DS), then the server must be promoted to a Domain Controller (DC). This grants the permission to perform authentication and authorization of our server. 
 
@@ -275,7 +275,13 @@ Ping Google on 8.8.8.8 and Splunk on 192.168.10.10 to check connectivity.
 * index=endpoint tsmith EventCode=4624
 * This shows successful login
 
-The entire scenario indicates a successful brute-force attack, which confirms this as a true positive case. Attach all the evidence, document it, and escalate to senior team for further remediation and analysis, which includes containment of the system, changing credentials, securing the network, and using multi-factor authentication.
+The entire scenario indicates a successful brute-force attack, which confirms this as a true positive case. Attach all the evidence, document it, and escalate to senior team for further remediation and analysis, which includes 
+*containment of the system
+*changing credentials
+*use of strong passwords
+*securing the network
+*limiting login attempts 
+*IP address blocking, and using multi-factor authentication.
 
 
 
